@@ -3,12 +3,13 @@
 // @namespace    http://tampermonkey.net/
 // @version      0.3
 // @description  Draw chart for Link quality index of MobinNet TD-LTE/WiMax modems
-// @author       Sadeq
+// @author       SadeqN
 // @icon         https://ir.sny.ir/favicon.ico
 // @homepage     https://sadeq.ir/
 // @match        http://*/status.asp
 // @grant        none
 // @require      https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.bundle.min.js
+// @updateURL    https://github.com/sadeqn/greasemonkey/blob/master/mobinnet-modem-signal-quality-chart.js
 // ==/UserScript==
 
 // Chart use ChartJS from https://github.com/chartjs/Chart.js
@@ -136,7 +137,7 @@ function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-
+// Sample colors:
 // Border Colors
 // 'rgba(54, 162, 235, 0.2)',
 // 'rgba(255, 206, 86, 0.2)',
