@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Link Quality chart and more refresh for MobinNet Modem
 // @namespace    http://tampermonkey.net/
-// @version      0.3
+// @version      0.4
 // @description  draw a chart of Link quality index for MobinNet TD-LTE/WiMax modems
 // @author       Sadeq
 // @icon         https://ir.sny.ir/favicon.ico
@@ -9,7 +9,7 @@
 // @match        http://*/status.asp
 // @grant        none
 // @require      https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.bundle.min.js
-// //@updateURL  https://github.com/sadeqn/greasemonkey/raw/master/chart4mobinnet.user.js
+// //@updateURL  https://ir.sny.ir:3000/sadeq/greasemonkey-scripts/raw/master/chart4mobinnet.user.js
 // ==/UserScript==
 
 // Chart use ChartJS from https://github.com/chartjs/Chart.js
@@ -39,7 +39,7 @@ function GetChartInfo()
         addData(myChart,d.getHours()+':'+d.getMinutes()+':'+d.getSeconds(),(res.sinr-1)/100);
         deleteData(myChart);
         refreshStatus(res);
-        myChart.update();
+        myChart.update(0);
     });
 }
 
@@ -47,7 +47,7 @@ function GetChartInfo()
 // http://192.168.9.1/goform/getGeneralInfo
 //
 var ctx = document.createElement('canvas');
-ctx.height = "50";
+ctx.height = "75";
 //ctx.width = "500";
 ctx.id = 'sqchart';
 var AddtoElement='div_link_quality';
@@ -121,7 +121,7 @@ function addData(chart, label, data) {
     });
 }
 function deleteData(chart) {
-    if (chart.data.labels.length<60) return;
+    if (chart.data.labels.length<30) return;
     chart.data.labels.shift();
     chart.data.datasets.forEach((dataset) => {
         dataset.data.shift();
